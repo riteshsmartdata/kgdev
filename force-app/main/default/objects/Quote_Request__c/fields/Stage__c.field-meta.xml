@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <label>Stage</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Request in Draft</fullName>
+                <default>true</default>
+                <label>Request in Draft</label>
+            </value>
+            <value>
+                <fullName>Request Submitted</fullName>
+                <default>false</default>
+                <label>Request Submitted</label>
+            </value>
+            <value>
+                <fullName>Request Received</fullName>
+                <default>false</default>
+                <label>Request Received</label>
+            </value>
+            <value>
+                <fullName>Request in Progress</fullName>
+                <default>false</default>
+                <label>Request in Progress</label>
+            </value>
+            <value>
+                <fullName>Request Closed</fullName>
+                <default>false</default>
+                <label>Request Closed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

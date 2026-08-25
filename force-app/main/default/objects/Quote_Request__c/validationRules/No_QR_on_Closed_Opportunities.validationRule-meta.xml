@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_QR_on_Closed_Opportunities</fullName>
+    <active>true</active>
+    <description>Please do not create QRs on Closed Opportunities</description>
+    <errorConditionFormula>AND(
+ISNEW(),
+Opportunity__r.RecordType.DeveloperName &lt;&gt; &apos;Calendars&apos;,
+OR(
+TEXT(Opportunity__r.StageName) = &quot;Closed Won&quot;,
+TEXT(Opportunity__r.StageName) = &quot;Closed Lost&quot;
+)
+)</errorConditionFormula>
+    <errorMessage
+  >Please do not create Quote Requests on Closed Opportunities - Thank you,</errorMessage>
+</ValidationRule>

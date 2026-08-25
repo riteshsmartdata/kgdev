@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Closed_Conditional_Values_Req</fullName>
+    <active>true</active>
+    <description
+  >Ensures that when a Quote Request is saved with the stage set as &quot;Request Closed&quot;, Site Selection, Quote Amount, respective Products, and Margin fields are populated</description>
+    <errorConditionFormula>AND(
+ISPICKVAL( Stage__c , &quot;Request Closed&quot;),
+RecordType.Name = &apos;Non-Calendar&apos;,
+OR(
+ISBLANK(Quote_Amount__c),
+ISBLANK(Valid_Through__c),
+ISBLANK(TEXT(Site_Selection__c)),
+
+IF(ISBLANK( Product_1__c), 0, 1) &lt;&gt; IF(ISBLANK( Product_1_Margin__c), 0, 1),
+IF(ISBLANK( Product_2__c), 0, 1) &lt;&gt; IF(ISBLANK( Product_2_Margin__c ), 0, 1),
+IF(ISBLANK( Product_3__c), 0, 1) &lt;&gt; IF(ISBLANK( Product_3_Margin__c ), 0, 1),
+IF(ISBLANK( Product_4__c ), 0, 1) &lt;&gt; IF(ISBLANK( Product_4_Margin__c ), 0, 1),
+IF(ISBLANK( Product_5__c ), 0, 1) &lt;&gt; IF(ISBLANK( Product_5_Margin__c ), 0, 1)
+))</errorConditionFormula>
+    <errorMessage
+  >The Quote Amount, Site Selection, Products, and Product Margin fields must be populated in order to close this quote. For example, for every Product field you&apos;ve selected, there must be respective Product Margin field populated for that entry. Thank You</errorMessage>
+</ValidationRule>

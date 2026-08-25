@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Reopen_Closed_Quote_Request</fullName>
+    <active>true</active>
+    <description
+  >Prevents users outside the BIC Standard User - Quoting profile from reopening a Closed/Cancelled Quote Request. If this profile is ever renamed, update the formula below.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED( Status__c ),
+  OR(
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Closed - Sent to customer&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Customer/Sales Requested&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled – production cannot produce&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Pricing available on internal website&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Not meeting MOQ&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - In hands cannot be met&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Duplicate&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - No Response&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Sent to Wrong Department&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled – not enough info submitted/invalid&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - By Customer/Sales Rep&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Miscellaneous&quot; ),
+    ISPICKVAL( PRIORVALUE( Status__c ), &quot;Cancelled - Production Cannot Produce&quot; )
+  ),
+  $Profile.Name &lt;&gt; &quot;BIC Standard User - Quoting&quot;,
+  $Profile.Name &lt;&gt; &quot;System Administrator&quot;
+)</errorConditionFormula>
+    <errorMessage
+  >Only the Quoting Team can reopen a closed Quote Request. Please contact the Quoting Team if this record needs to be reopened.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calendar_Minimum_Request__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >Must order a minimum of 500 pieces for a Custom Calendar Request. Does your request meet this minimum?</inlineHelpText>
+    <label>Calendar Minimum Request</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
