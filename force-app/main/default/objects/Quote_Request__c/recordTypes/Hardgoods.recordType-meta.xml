@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardgoods</fullName>
+    <active>false</active>
+    <description
+  >Hardgoods: Any NON-BIC-Branded Products with an Item Number (Non-Published Pricing/Options for Stockline or Modified Stockline Products)</description>
+    <label>Hardgoods</label>
+    <picklistValues>
+        <picklist>Currency__c</picklist>
+        <values>
+            <fullName>CAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pending_Production__c</picklist>
+        <values>
+            <fullName>CLWB1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CLWB2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RDW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pricing_Country__c</picklist>
+        <values>
+            <fullName>CAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Type__c</picklist>
+        <values>
+            <fullName>Custom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Modified Stockline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stockline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Year__c</picklist>
+        <values>
+            <fullName>2018</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2019</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2020</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2021</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2022</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2023</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2024</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2025</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Production_Site__c</picklist>
+        <values>
+            <fullName>Domestic</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Domestic %26 Overseas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Overseas</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Quote_Request_Type__c</picklist>
+        <values>
+            <fullName>Custom Calendar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non_Calendar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Universal Source</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_Cancelled__c</picklist>
+        <values>
+            <fullName>Reason Code 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reason Code 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reason Code 3</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Site_Selection__c</picklist>
+        <values>
+            <fullName>Asia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clearwater- B1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clearwater- B2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Factory Direct%2FVendor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red Wing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sleepy Eye</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Request Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Request Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Request Submitted</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Request in Progress</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Non-Written Quote %28Pricing Exception%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Quote %28Account Price%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Quote %28Large Order Price%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Quote %28Pricing Exception%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Domestic_Inventory__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >For Domestic requests, inventory must be checked on the website prior to quote submission. If inventory is insufficient, please specify how you would like to proceed in the Mandatory Requirements being that our quotes are only valid for 30 days.</inlineHelpText>
+    <label>Domestic Inventory</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

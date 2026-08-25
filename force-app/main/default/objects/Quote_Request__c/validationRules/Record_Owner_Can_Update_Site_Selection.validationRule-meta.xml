@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_Owner_Can_Update_Site_Selection</fullName>
+    <active>false</active>
+    <description
+  >Only the record owner or a system administrator can update the site selection field</description>
+    <errorConditionFormula
+  >AND(ISCHANGED(  Site_Selection__c ), $User.Id &lt;&gt; OwnerId, 
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;
+       )</errorConditionFormula>
+    <errorMessage
+  >Only the record owner can modify the &quot;Site Selection&quot; field.</errorMessage>
+</ValidationRule>
