@@ -7,7 +7,13 @@
 .sfdx/
 .localdevserver/
 deploy-options.json
-
+dataOwner/
+IspRequest/
+resourceLLoader/
+CPU*
+.vscode/
+.husky/
+manifest/
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
 
