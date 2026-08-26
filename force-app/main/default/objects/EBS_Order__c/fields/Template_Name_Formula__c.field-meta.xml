@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template_Name_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(OR(Account_Name__r.Customer_Category__c = &apos;NON-VERIFIED&apos;,Account_Name__r.Logo__c = &apos;CALENDAR COOP&apos;) ,
+&apos;Calendar Coop PO Receipt v1&apos;,
+IF(OR(Account_Name__r.Customer_Category__c = &apos;CHURCH&apos;,Account_Name__r.Customer_Category__c = &apos;BOOKSTORE&apos;),
+&apos;Anchor Wallace PO Receipt Notification v1&apos;,
+IF(AND(OR(Account_Name__r.Customer_Category__c = &apos;NON-VERIFIED&apos;,Account_Name__r.Logo__c = &apos;CALENDAR COOP&apos;),
+PO_Total_Difference__c  &lt; 50), &apos;Calendar Coop OE No Touch less then 50 v1&apos;,
+IF(AND(OR(Account_Name__r.Customer_Category__c = &apos;CHURCH&apos;,Account_Name__r.Customer_Category__c = &apos;BOOKSTORE&apos;),
+PO_Total_Difference__c  &lt; 50), &apos;Anchor Wallace OE No Touch less 50 Notification v1&apos;, 
+IF(AND(OR(Account_Name__r.Customer_Category__c != &apos;NON-VERIFIED&apos;,
+										Account_Name__r.Logo__c != &apos;CALENDAR COOP&apos;,Account_Name__r.Customer_Category__c != &apos;CHURCH&apos;,
+										Account_Name__r.Customer_Category__c != &apos;BOOKSTORE&apos;),PO_Total_Difference__c  &lt; 50), 
+&apos;Koozie Group OE No Touch less 50 Notification v1&apos;,&apos;Koozie Group PO Receipt Email v1&apos;)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Template Name Formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

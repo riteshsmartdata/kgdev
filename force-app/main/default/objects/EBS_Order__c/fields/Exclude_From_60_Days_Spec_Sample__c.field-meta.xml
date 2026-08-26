@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_From_60_Days_Spec_Sample__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Exclude the record from the Spec Sample journey if the checkbox is selected (true). If checked, the record will be ignored for 90 days and not enter the Spec Sample journey.</description>
+    <label>Exclude From 60 Days Spec Sample</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KGEBSOrder</fullName>
+    <active>true</active>
+    <description>This is the record type for KG orders</description>
+    <label>KG EBS Order</label>
+    <picklistValues>
+        <picklist>Currency__c</picklist>
+        <values>
+            <fullName>CAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Confirmation_Required__c</picklist>
+        <values>
+            <fullName>N</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Y</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>PO_Confirmation_Required__c</picklist>
+        <values>
+            <fullName>N</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Y</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Shipping_Notification_Required__c</picklist>
+        <values>
+            <fullName>N</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Y</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Activated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Booked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Template_Type__c</picklist>
+        <values>
+            <fullName>Anchor Wallace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Calendar Coop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gary Containers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Koozie Group</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Terms__c</picklist>
+        <values>
+            <fullName>30TH OF NM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ADV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CREDIT CARD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N15 Consolidate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NET 90</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Warehouse__c</picklist>
+        <values>
+            <fullName>CLW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RDW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

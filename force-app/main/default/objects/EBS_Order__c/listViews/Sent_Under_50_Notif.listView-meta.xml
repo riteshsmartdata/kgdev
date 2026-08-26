@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sent_Under_50_Notif</fullName>
+    <columns>NAME</columns>
+    <columns>PO_Contact_Email__c</columns>
+    <columns>PO_Contact__c</columns>
+    <columns>EBS_Order_Number__c</columns>
+    <columns>Customer_PO__c</columns>
+    <columns>PO_Diff_Calc_Time__c</columns>
+    <columns>PO_Total_Difference__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Account_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>LAST_WEEK</value>
+    </filters>
+    <filters>
+        <field>PO_Diff_Calc_Time__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>PO_Total_Difference__c</field>
+        <operation>greaterThan</operation>
+        <value>2</value>
+    </filters>
+    <filters>
+        <field>PO_Total_Difference__c</field>
+        <operation>lessOrEqual</operation>
+        <value>50</value>
+    </filters>
+    <filters>
+        <field>Under_50_notification_sent__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Sent Under 50 Notif</label>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Agreement_exists__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Sales Agreement exists for this ACCOUNT/ORDER</description>
+    <inlineHelpText
+  >Sales Agreement exists for this ACCOUNT/ORDER</inlineHelpText>
+    <label>Sales Agreement exists</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

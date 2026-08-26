@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warehouse__c</fullName>
+    <label>Warehouse</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SLE</fullName>
+                <default>false</default>
+                <label>SLE</label>
+            </value>
+            <value>
+                <fullName>CLW</fullName>
+                <default>false</default>
+                <label>CLW</label>
+            </value>
+            <value>
+                <fullName>RDW</fullName>
+                <default>false</default>
+                <label>RDW</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

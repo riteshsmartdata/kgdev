@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EBS_ORDERS_FOR_2019_CLOSED</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Name__c</field>
+        <operation>equals</operation>
+        <value>SMR PROMOTIONS LLC</value>
+    </filters>
+    <filters>
+        <field>Order_Header_Status__c</field>
+        <operation>equals</operation>
+        <value>CLOSED</value>
+    </filters>
+    <filters>
+        <field>Ship_Order_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2019</value>
+    </filters>
+    <label>EBS ORDERS FOR 2019 CLOSED</label>
+</ListView>

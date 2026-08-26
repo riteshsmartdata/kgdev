@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Line_Shipping_Priority__c</fullName>
+    <label>Line Shipping Priority</label>
+    <summaryFilterItems>
+        <field>EBS_Order_Line__c.Line_Type__c</field>
+        <operation>contains</operation>
+        <value>24</value>
+    </summaryFilterItems>
+    <summaryForeignKey>EBS_Order_Line__c.Order__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

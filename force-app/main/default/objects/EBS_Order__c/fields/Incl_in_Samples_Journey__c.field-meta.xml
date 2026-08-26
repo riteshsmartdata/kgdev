@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Incl_in_Samples_Journey__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Included in Samples Journey, coming from SFMC Samples Journey</description>
+    <inlineHelpText
+  >Included in Samples Journey, coming from SFMC Samples Journey</inlineHelpText>
+    <label>Incl in Samples Journey?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

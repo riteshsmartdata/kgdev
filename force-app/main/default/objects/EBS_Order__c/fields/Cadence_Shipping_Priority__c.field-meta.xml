@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cadence_Shipping_Priority__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF
+(
+	Line_Shipping_Priority__c  &gt; 0,
+	&apos;24 Hour Cadence&apos;, 
+	&apos;Standard Cadence&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cadence Shipping Priority</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

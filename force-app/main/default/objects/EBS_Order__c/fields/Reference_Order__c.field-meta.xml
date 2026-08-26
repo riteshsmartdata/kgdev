@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_Order__c</fullName>
+    <description
+  >Field to capture the previous order number if the current order is a repeat order.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Field to capture the previous order number if the current order is a repeat order.</inlineHelpText>
+    <label>Reference Order</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X4imprint_Orders</fullName>
+    <columns>NAME</columns>
+    <columns>Customer_Account_Number__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Order_Header_Status__c</columns>
+    <columns>EBS_Order_Number__c</columns>
+    <columns>Customer_PO__c</columns>
+    <columns>Order_Subtotal__c</columns>
+    <columns>Order_Header_Tax__c</columns>
+    <columns>Order_Header_Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Customer_Account_Number__c</field>
+        <operation>equals</operation>
+        <value>4162</value>
+    </filters>
+    <filters>
+        <field>Order_Header_Tax__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2026 12:00 AM</value>
+    </filters>
+    <label>4imprint Orders with Tax</label>
+    <sharedTo>
+        <role>Claims_Manager</role>
+        <role>Claims_Rep</role>
+        <role>Credit_Manager</role>
+        <role>Finance_Manager</role>
+        <role>Finance_User</role>
+    </sharedTo>
+</ListView>
