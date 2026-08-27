@@ -1,0 +1,22 @@
+<apex:page >
+ 
+   <style>
+      .blink-two {
+        animation: blinker 0.6s linear infinite;
+        color: Black;
+        font-size: 4px;
+        font-family: source sans-pro;
+      }
+      .blink-two {
+        animation: blinker-two 3.0s linear infinite;
+      }
+      @keyframes blinker-two {
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+
+ <p class="blink blink-two"><b><apex:image url="https://kooziegroup--c.documentforce.com/servlet/servlet.FileDownload?file=0154w000024KWFv" styleClass="imageStyle"/></b><br/>
+   </p>
+</apex:page>

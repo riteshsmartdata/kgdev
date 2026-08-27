@@ -1,0 +1,97 @@
+<apex:component controller="VF_InvHold_LeadTimeAutomation" access="global">
+    <!-- RelatedTo Id of EBS_Order__c passed from the email template -->
+    <apex:attribute name="ebsOrderId" assignTo="{!orderId}" type="Id" description="EBS Order record Id (relatedTo.Id)" required="false"/>
+
+    <!-- Common merge-driven fields (passed in from template for safety/user mode) -->
+    <apex:attribute name="AccountNumber" type="String" description="Customer Account Number" required="false"/>
+    <apex:attribute name="AccountName" type="String" description="Account Name" required="false"/>
+    <apex:attribute name="CustomerPO" type="String" description="Customer PO Number" required="false"/>
+    <apex:attribute name="EBSOrderNumber" type="String" description="EBS Order Number" required="false"/>
+    <apex:attribute name="TrackingLink" type="String" description="Tracking Link (No Pricing)" required="false"/>
+
+    <!-- Recipient -->
+    <apex:attribute name="RecipientName" type="String" description="Recipient full name" required="false"/>
+
+    <!-- Optional placeholders for ship details -->
+    <apex:attribute name="ScheduledShipDate" type="String" description="Scheduled ship date string" required="false"/>
+    <apex:attribute name="ShipMethod" type="String" description="Ship method" required="false"/>
+    <apex:attribute name="ArrivalDate" type="String" description="Estimated arrival date" required="false"/>
+    <apex:attribute name="link" type="String" description="Inventory Hyperlink" required="false"/>
+   
+    <!-- Email Body Starts-->
+    <!-- Greeting -->
+    <p>
+        {!SUBSTITUTE($Label.KG_INVHOLD_Greeting_Tmpl, "{0}", RecipientName)}
+    </p>
+
+    <!-- Key order information -->
+    <p>
+        <strong>Account Number:</strong> {!AccountNumber}<br/>
+        <strong>Account:</strong> {!AccountName}<br/>
+        <strong>Purchase Order:</strong> {!CustomerPO}<br/>
+        <strong>Sales Order:</strong> {!EBSOrderNumber}
+    </p>
+
+    <!-- Intro -->
+    <p>{!$Label.KG_INVHOLD_Intro}</p>
+
+    <!-- Line items (fetched by VFEmailController similar to VF_LeadTimeAutomation) -->
+    <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductName}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductNumber}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductColor}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_Quantity}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ScheduledShipDate}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ShipMethod}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_EstimatedArrivalDate}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!EBSOrderLines}" var="line">
+                <tr>
+                    <td >{!line.External_Product_Name__c}</td>
+                    <td>{!line.Product_Number__c}</td>
+                    <td>{!line.Product_Color__c}</td>
+                    <td>{!line.Quantity__c}</td>
+                    <td class="auto-width" >
+                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                            <apex:param value="{!line.Scheduled_Ship_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>{!line.Ship_Method__c}</td>
+                    <td class="auto-width" >
+                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                            <apex:param value="{!line.Estimated_Arrival_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+    <!-- Assistance copy and KG_INVHOLD_Worrisome News -->
+    <p>
+        <b>{!$Label.KG_INVHOLD_AssistanceCopy}</b>
+        {!$Label.KG_INVHOLD_WorrisomeNews}
+    </p>
+
+    <!-- Tracking link block -->
+    <p>
+        {!$Label.KG_INVHOLD_ViewUpdates_CTA} <br/>
+        <a href="{!TrackingLink}" target="_blank">{!TrackingLink}</a> <br/>
+        <i>{!$Label.KG_INVHOLD_LinkFallbackHelp}</i>
+    </p>
+
+    <!-- Alternative suggestions -->
+    <p>{!$Label.KG_INVHOLD_AltSuggestions}</p>
+
+    <!-- Signature -->
+    <p>
+        {!$Label.KG_Best_Regards}<br/>
+        {!$Label.KG_Customer_Care_Krew}<br/>
+        <apex:outputLink value="https://www.kooziegroup.com" target="_blank">{!$Label.KG_Website_Text}</apex:outputLink><br/>
+        {!$Label.KG_Phone_Text}
+    </p>
+</apex:component>

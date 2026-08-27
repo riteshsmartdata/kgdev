@@ -1,0 +1,13 @@
+.button-container {
+    display: inline-flex;
+    max-width: 104px; 
+}
+
+.button-style {
+    width: 106%;
+    height: 31px; 
+    padding: 0 12px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

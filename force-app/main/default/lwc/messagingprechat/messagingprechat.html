@@ -1,0 +1,50 @@
+<!--
+  @description       : 
+  @author            : Ritesh Kumar
+  @group             : 
+  @last modified on  : 03-20-2025
+  @last modified by  : Ritesh Kumar
+  Modifications Log
+  Ver   Date         Author         Modification
+  1.0   01-13-2025   Ritesh Kumar   Initial Version
+-->
+<template>
+		<template if:true={isLoading}>
+			<div class="backgroundInverse">
+				<lightning-spinner alternative-text="Loading" variant="inverse"></lightning-spinner>
+			</div> 
+		</template>
+
+		<template if:false={showOTP}>
+		<div class="slds-p-around_x-small slds-m-around_x-small">
+			<div class="slds-grid slds-wrap">
+				<div class="slds-col slds-size_1-of-1">
+					<template for:each={fields} for:item="field">
+						<c-custom-pre-chat-form-field key={field.name} field-info={field}>
+						</c-custom-pre-chat-form-field>
+					</template> 
+				</div> 
+				<div class="slds-col slds-size_1-of-1"> 
+					<div class="slds-m-around_small slds-align_absolute-center">
+						<lightning-button variant="brand" name="start-chat-otp-btn" label={chatConfig.Start_Chat_button_Label__c} title={chatConfig.Start_Chat_button_Label__c} onclick={validateAndStartChat} class="slds-m-left_x-small slds-button_stretch">
+						</lightning-button> 
+					</div> 
+				</div>	
+
+			</div>
+		</div>
+		</template> 
+
+		<div class="slds-grid slds-wrap">
+			<div class="slds-col slds-size_1-of-1">
+				<div class={otpClass}>
+					<c-otp chat-config={chatConfig} email-info = {emailInfo}  prechat-data= {prechatform} onerroroccured ={handleError} onstartchat={onHandelStartConversation} onshowspinner={showSpinner} onhidespinner={hideSpinner}></c-otp>
+				</div>
+			</div>
+		</div>
+
+		<template if:true={errorMessage}>
+			<div class="slds-text-color_error">Error: {errorMessage}</div>        
+		</template>
+		
+</template>

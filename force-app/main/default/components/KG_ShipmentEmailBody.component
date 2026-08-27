@@ -1,0 +1,86 @@
+<apex:component controller="KG_ShipmentEmailController" access="global">
+    <!-- Attributes -->
+    <apex:attribute name="order" description="EBS Order record" type="EBS_Order__c" required="false"/>
+    <apex:attribute name="RecipientName" type="String" description="First Name and Last Name" required="false"/>
+    <!-- Pass order Id into controller for querying shipped lines -->
+    <apex:attribute name="ebsOrderId" description="EBS Order Id for fetching shipped lines" type="Id" assignTo="{!orderId}"/>
+
+    <style>
+        .auto-width {
+            width: 20%;
+        }
+    </style>
+
+    <!-- Heading/account details -->
+    <p>
+        <strong>{!$Label.KG_SHIP_EMAIL_HEADER_ACCOUNT_NUMBER} </strong>
+        <apex:outputText value="{!order.Customer_Account_Number__c}"/>
+        <br/>
+        <strong>{!$Label.KG_SHIP_EMAIL_HEADER_ACCOUNT_NAME} </strong>
+        <apex:outputText value="{!order.Account_Name__r.Name}"/>
+        <br/>
+        <strong>{!$Label.KG_SHIP_EMAIL_HEADER_PO}</strong>
+        <apex:outputText value="{!order.Customer_PO__c}"/>
+        <br/>
+        <strong>{!$Label.KG_SHIP_EMAIL_HEADER_SO}</strong>
+        <apex:outputText value="{!order.EBS_Order_Number__c}"/>
+    </p>
+
+    <!-- Greeting -->
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_GREETING_PREFIX} {!RecipientName},"/>
+    </p>
+
+    <!-- Intro -->
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_BODY_INTRO}"/>
+    </p>
+
+    <!-- Items table. Fethced from Apex class-->
+    <table border="1">
+        <thead>
+            <tr>
+                <td class="auto-width">Product Name</td>
+                <td class="auto-width">Product Number</td>
+                <td class="auto-width">Product Color</td>
+                <td class="auto-width">Quantity</td>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!EBSOrderLines}" var="l">
+                <tr>
+                    <td class="auto-width"><apex:outputText value="{!l.External_Product_Name__c}"/></td>
+                    <td class="auto-width"><apex:outputText value="{!l.Product_Number__c}"/></td>
+                    <td class="auto-width"><apex:outputText value="{!l.Product_Color__c}"/></td>
+                    <td class="auto-width"><apex:outputText value="{!l.Quantity__c}"/></td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+    <!-- Tracking -->
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_TRACKING_INTRO}"/>
+        <br/>
+        <a href="{!order.Tracking_Link_NoPricing__c}"><apex:outputText value="{!order.Tracking_Link_NoPricing__c}"/></a>
+        <br/>
+        <i><apex:outputText value="{!$Label.KG_SHIP_EMAIL_TRACKING_HELP}"/></i>
+    </p>
+
+    <!-- Survey -->
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_SURVEY_PROMPT}"/>
+        <apex:outputLink value="https://kooziegroup.surveymonkey.com/r/2ZYRTX2" target="_blank"> Feedback</apex:outputLink><br/>
+    </p>
+
+    <!-- Closing/signature -->
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_THANKS}"/> <br/>
+    </p>
+    <p>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_SIGNATURE_BEST_REGARDS}"/><br/>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_SIGNATURE_TEAM}"/><br/>
+        <apex:outputLink value="https://www.kooziegroup.com" target="_blank">{!$Label.KG_SHIP_EMAIL_SIGNATURE_SITE}</apex:outputLink><br/>
+        <apex:outputText value="{!$Label.KG_SHIP_EMAIL_SIGNATURE_PHONE}"/>
+    </p>
+</apex:component>

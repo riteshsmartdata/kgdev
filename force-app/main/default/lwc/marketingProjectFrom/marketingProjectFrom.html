@@ -1,0 +1,305 @@
+<template>
+	<div class="slds-p-around_medium" style="padding-left: 20%; padding-right: 20%;">
+		<div class="slds-col">
+			<lightning-card class="slds-text-align_center" title="Marketing Project Form">
+				<div class="slds-p-around_medium">
+					<div if:true={error} class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+						<span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top" title="Error">
+						<lightning-icon icon-name="utility:error" variant="inverse" alternative-text="Error"></lightning-icon>
+					</span>
+						<h2>Something went wrong please contact your admin</h2>
+					</div>
+					<template if:true={showSpinner}>
+						<div class="slds-spinner_container">
+							<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+								<span class="slds-assistive-text">Loading</span>
+								<div class="slds-spinner__dot-a"></div>
+								<div class="slds-spinner__dot-b"></div>
+							</div>
+						</div>
+					</template>
+					<div class="slds-grid slds-wrap" style="text-align: center;">
+	
+
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								Status
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="text" name="selectedStatus"
+								value={selectedStatus} readonly >
+							</lightning-input>
+						</div>
+
+
+
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								Marketing Project Name
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="text" name="marketingProjectName"
+								value={marketingProjectName} onchange={handleInputChange} required class="nameCls">
+							</lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Business Units</legend>
+							<lightning-combobox variant="label-hidden" name="BusinessUnits" value={BusinessUnits}
+								options={BusinessUnitsOptions} onchange={handleInputChange}>
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">SharePoint Review
+								Complete
+								<abbr class="slds-required" title="required">*</abbr>
+							<lightning-helptext content="Select to confirm you have reviewed the Promotional Materials folder in the Sales Resource Library to ensure: (1) There isn’t a Marketing focused flyer that can be used; (2) No prior project can be reused; (3) A flyer template isn’t available to use."></lightning-helptext>
+							</legend> 
+							<lightning-combobox variant="label-hidden" name="sharePointReviewComplete"
+								value={sharePointReviewComplete} options={SharePointReviewCompleteOptions}
+								onchange={handleInputChange} required class="sharePointReviewCompleteCls">
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								Team Requesting Project
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-combobox variant="label-hidden" name="teamRequestingProject"
+								value={teamRequestingProject} options={teamRequestingProjectOptions}
+								onchange={handleInputChange} required class="teamRequestingProjectCls">
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Requesting Team: Specify
+								if Other</legend>
+							<lightning-input variant="label-hidden" type="text" name="requestingTeam"
+								value={requestingTeam} onchange={handleInputChange} class="requestingTeamCls" ></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								Project Type
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-combobox variant="label-hidden" name="projectType" value={projectType}
+								options={projectTypeOptions} onchange={handleInputChange} required
+								class="projectTypeCls">
+							</lightning-combobox></b>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Other Type</legend>
+							<lightning-input variant="label-hidden" type="text" name="otherType" value={otherType}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								Project Submission Date
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="date" name="projectSubmissionDate"
+								value={today} required class="projectSubmissionDateCls" readonly></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								First Draft Due Date
+								<abbr class="slds-required" title="required">*</abbr>
+								<lightning-helptext content="Date first draft needed from creative. Date must be a minimum of 7-working days"></lightning-helptext>
+							</legend>
+							<lightning-input variant="label-hidden" type="date" name="firstDraftDueDate"
+								value={firstDraftDueDate} onchange={handleInputChange} required
+								class="firstDraftDueDateCls"></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Final Completion Date
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="date" name="finalCompletionDate"
+								value={finalCompletionDate} onchange={handleInputChange} required
+								class="finalCompletionDateCls"></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Branded/Unbranded
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-combobox variant="label-hidden" name="brandedUnbranded" value={brandedUnbranded}
+								options={brandedUnbrandedOptions} onchange={handleInputChange} required
+								class="brandedUnbrandedCls">
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-1 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Project Purpose and
+								Opportunity</legend>
+							<lightning-textarea variant="label-hidden" name="projectPurposeAndOpportunity"
+								value={projectPurposeAndOpportunity} onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-1 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Featured Product(s)
+							</legend>
+							<lightning-textarea variant="label-hidden" name="featuredProduct" value={featuredProduct}
+								onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">US / Canada
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-combobox variant="label-hidden" name="uSCanada" value={uSCanada}
+								options={uSCanadaOptions} onchange={handleInputChange} required class="uSCanadaCls">
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Pricing: If 'Other'
+								Please Specify</legend>
+							<lightning-input variant="label-hidden" type="text" name="pricingIfPleaseSpecify"
+								value={pricingIfPleaseSpecify} onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Distributor Logo to
+								Include</legend>
+							<lightning-textarea variant="label-hidden" name="brandLogos" value={brandLogos}
+								onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Creative Direction,
+								Style, and Tone</legend>
+							<lightning-textarea variant="label-hidden" name="attitudeStyleandtone"
+								value={attitudeStyleandtone} onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Pricing for Items (If
+								Applicable)</legend>
+							<lightning-combobox variant="label-hidden" name="pricingforItems" value={pricingforItems}
+								options={pricingforItemsOptions} onchange={handleInputChange}>
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">List Product Information
+								to be included</legend>
+							<lightning-textarea variant="label-hidden" name="listProduct" value={listProduct}
+								onchange={handleInputChange} maxlength="255" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-1 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Additional Pieces to be
+								Produced</legend>
+							<lightning-textarea variant="label-hidden" name="additionalPieces" value={additionalPieces}
+								onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-1 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Objective
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-textarea variant="label-hidden" name="objective" value={objective}
+								onchange={handleInputChange} required class="objectiveCls" maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Type of File Needed:
+								Other / Multiple</legend>
+							<lightning-input variant="label-hidden" type="text" name="typeofFileNeeded"
+								value={typeofFileNeeded} onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Size of File (Dimensions)
+							</legend>
+							<lightning-input variant="label-hidden" type="text" name="sizeofFile" value={sizeofFile}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-1 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Message</legend>
+							<lightning-textarea variant="label-hidden" name="message" value={message}
+								onchange={handleInputChange} maxlength="2000" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Promo Code (if
+								applicable)</legend>
+							<lightning-input variant="label-hidden" name="promoCode" value={promoCode}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Type of File Needed
+							</legend>
+							<lightning-combobox variant="label-hidden" name="typeofFile" value={typeofFile}
+								options={typeofFileOptions} onchange={handleInputChange}>
+							</lightning-combobox>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Size of Image File
+								(Pixels)</legend>
+							<lightning-input variant="label-hidden" type="text" name="sizeofImageFile"
+								value={sizeofImageFile} onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Pages Needed (If other
+								than 1)</legend>
+							<lightning-input variant="label-hidden" type="number" name="pagesNeeded" value={pagesNeeded}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Effective Date</legend>
+							<lightning-input variant="label-hidden" type="date" name="effectiveDate"
+								value={effectiveDate} onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Expiration Date
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="date" name="expirationDate"
+								value={expirationDate} onchange={handleInputChange} required class="expirationDateCls">
+							</lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">SharePoint: Link to
+								File(s)</legend>
+							<lightning-textarea variant="label-hidden" name="sharePoint" value={sharePoint}
+								onchange={handleInputChange}
+								placeholder='Link to the files that creative is to reference here' maxlength="255">
+							</lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">References</legend>
+							<lightning-textarea variant="label-hidden" name="references" value={references}
+								onchange={handleInputChange} maxlength="255" ></lightning-textarea>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Owner</legend>
+							<lightning-input variant="label-hidden" name="ownersubmitted" value={ownersubmitted}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Submitter Email
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="Email" name="submitterEmail"
+								value={submitterEmail} onchange={handleInputChange} required class="EmailCls">
+							</lightning-input>
+						</div>
+
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Reviewer
+								<abbr class="slds-required" title="required">*</abbr>
+							</legend>
+							<lightning-input variant="label-hidden" type="text" name="reviewer" value={reviewer}
+								onchange={handleInputChange} required class="reviewerCls"></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Reviewer1</legend>
+							<lightning-input variant="label-hidden" name="reviewer1" value={reviewer1}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Reviewer2</legend>
+							<lightning-input variant="label-hidden" name="reviewer2" value={reviewer2}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+						<div class="slds-size_1-of-2 slds-p-horizontal_small">
+							<legend class="slds-form-element__legend slds-form-element__label">Reviewer3</legend>
+							<lightning-input variant="label-hidden" name="reviewer3" value={reviewer3}
+								onchange={handleInputChange}></lightning-input>
+						</div>
+					</div>
+					<div class="slds-m-top_medium">
+						<lightning-button variant="brand" type="submit" label="Submit" onclick={handleSave}>
+						</lightning-button>
+					</div>
+				</div>
+			</lightning-card>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,5 @@
+<apex:page controller="RatingController" action="{!createRecordFromURLRating}">
+    <!-- Begin Default Content REMOVE THIS -->
+    <h1>{!displayMessage}</h1><br/><br/>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,6 @@
+.custom-border {
+    border-bottom: 3px solid gainsboro; 
+}
+.slds-docked-form-footer{ 
+position: relative !important; 
+}

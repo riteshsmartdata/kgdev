@@ -1,0 +1,53 @@
+.tile-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.tile {
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    margin: 5px;
+    padding: 10px; /* Adjust padding as needed */
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    word-wrap: break-word; /* Ensure content wraps within tiles */
+}
+
+.tile-header {
+    font-weight: bold;
+    font-size: 14px; /* Increase font size for the header */
+}
+
+.tile-content {
+    font-size: 12px; /* Increase font size for the content */
+}
+.scroll-container {
+    max-height: 300px; /* Adjust the max height as needed */
+    overflow-y: auto;
+    
+}
+ .logo {
+    width: 24px;
+    height: 24px;
+    fill: #0070d2; /* Change the color as needed */
+    margin-left: 8px;
+}
+.custom-card {
+        background-color: rgb(201, 201, 201); /* Gray background color */
+    }
+.larger-text {
+    font-size: 18px;
+    margin-left: 15px;
+}
+ 
+    .header {
+   background-color: rgb(243, 243, 243);
+     padding: 8px;
+   
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}

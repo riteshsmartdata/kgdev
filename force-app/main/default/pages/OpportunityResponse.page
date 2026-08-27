@@ -1,0 +1,62 @@
+<apex:page controller="OpportunityResponse" showHeader="false" action="{!doInit}">
+    <html lang="en">
+        <head>
+            <apex:slds />
+            <meta charset="UTF-8"/>
+            <title>Opportunity Feedback</title>
+        </head>
+        
+        <body class="slds-scope">
+            <div class="slds-grid slds-grid_align-center slds-m-top_x-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-grid slds-grid_align-center slds-m-bottom_large">
+                                    <div class="slds-col slds-size_1-of-1 slds-text-align_center">
+                                        <img src="{!URLFOR($Resource.KoozieLogo)}" alt="Koozie Logo" style="max-height: 60px;" />
+                                    </div>
+                                </div>
+                            </header>
+                        </div>
+                        
+                        <div class="slds-card__body slds-card__body_inner">
+                            <apex:form id="formId">
+                                <apex:messages styleclass="slds-notify slds-notify_alert slds-theme_error slds-m-bottom_medium"/>
+                                <!-- Show Success Message -->
+                                <apex:outputPanel rendered="{!success}">
+                                    <div class="slds-notify slds-notify_alert slds-theme_success slds-m-bottom_medium" role="alert">
+                                        <span class="slds-assistive-text">Success</span>
+                                        <h2 class="slds-text-heading_small">{!USER_MESSAGE}</h2>
+                                    </div>
+                                </apex:outputPanel>
+                                
+                                <!-- Show Form if Not Submitted -->
+                                <apex:outputPanel rendered="{!NOT(success)}">
+                                    <apex:outputPanel rendered="{!showOther}">
+                                        <p class="slds-text-body_regular slds-m-bottom_medium">
+                                            We'd love to hear your feedback about this opportunity. Please enter it below:
+                                        </p>
+                                        <div class="slds-form-element slds-m-bottom_medium">
+                                            <label class="slds-form-element__label" for="feedback">Your Feedback</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputTextarea value="{!feedbackText}" styleClass="slds-textarea" rows="5" id="feedback"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-m-top_medium">
+                                            <apex:commandButton value="Submit Feedback"
+                                                                action="{!submitFeedback}"
+                                                                reRender="formId"
+                                                                styleClass="slds-button slds-button_brand"/>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                            </apex:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

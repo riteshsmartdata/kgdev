@@ -1,0 +1,65 @@
+<apex:component controller="VFEmailController" access="global">
+    <!-- Get values from email template -->
+    <apex:attribute name="EBSOrderId" assignTo="{!EbsId}" description="This is the account Id passed from the email template." type="Id"/>
+    <apex:attribute name="EBSOrderName" description="" type="String" />
+    <apex:attribute name="AccountName" description="" type="String" />
+    <apex:attribute name="AccountNumber" description="" type="String" />
+    <apex:attribute name="CustomerPO" description="" type="String" />
+    <apex:attribute name="EBSOrderNumber" description="" type="String" />
+    <apex:attribute name="TrackingLinkNoPricing" description="" type="String" />
+    <apex:attribute name="TrackingLink" description="" type="String" />
+    <apex:attribute name="POContact" description="PO Contact lookup field" type="Id" />
+    
+    <style>
+        .auto-width {
+        width: 20%;
+        }
+    </style>
+   
+    <p>
+        <strong>Account Number:</strong> {!AccountNumber}<br/>
+        <strong>Account:</strong> {!AccountName}<br/>
+        <strong>Purchase Order:</strong> {!CustomerPO}<br/>
+        <strong>Sales Order:</strong> {!EBSOrderNumber}
+   </p>
+   <p>
+        Hi {!POContact},<br/>    
+        <br/>
+        This email confirms that one or more of your order lines (if applicable) have been verified as production ready and released into our production queue.<br/>
+    
+    </p>
+    <table border="1">
+        <thead>
+            <tr>
+                <td class="auto-width" >Product Name</td>
+                <td class="auto-width" >Product Number</td>
+                <td class="auto-width" >Product Color</td>
+                <td class="auto-width" >Quantity</td>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!EBSOrderLines}" var="EBSOrderLine">
+                <tr>
+                    <td class="auto-width" >{!EBSOrderLine.External_Product_Name__c}</td>
+                    <td class="auto-width" >{!EBSOrderLine.Product_Number__c}</td>
+                    <td class="auto-width" >{!EBSOrderLine.Product_Color__c}</td>
+                    <td class="auto-width" >{!EBSOrderLine.Quantity__c}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+    <p>
+        To view your order details and real-time status, use this link: <apex:outputLink value="{!TrackingLink}" target="_blank">{!TrackingLink}</apex:outputLink>
+        <br/>
+        <i>If the above link doesn’t work, copy and paste the above URL into your browser.</i><br/>
+        <br/>
+        Should you have any questions regarding this order, simply reply to this email.<br/>        
+    </p> 
+    
+     <p>
+        Best Regards,<br/>
+        The Koozie Group® Customer Care Krew<br/>
+        <a href="https://www.kooziegroup.com" target="_blank">kooziegroup.com</a><br/>
+        1-888-446-5242
+    </p>    
+</apex:component>

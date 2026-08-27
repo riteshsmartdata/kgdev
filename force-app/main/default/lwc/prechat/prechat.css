@@ -1,0 +1,29 @@
+lightning-button {
+    padding-top: 1em;
+}
+
+.chat-box{
+    padding: 12px;
+}
+
+.slds-form-element{
+    padding: 2px 0px 2px 0px;
+}
+
+:host .slds-form-element__label{
+    float: left !important;
+}
+
+.bBody:hover{
+    color: #ffffff;
+}
+
+.bBody{
+    color:#ffffff;
+}
+
+
+.slds-card{
+    border: none;
+    box-shadow: none;
+}

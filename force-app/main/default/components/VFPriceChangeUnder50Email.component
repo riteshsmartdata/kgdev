@@ -1,0 +1,40 @@
+<apex:component access="global">
+    <!-- Attributes passed from the email template -->
+    <apex:attribute name="AccountNumber" description="Account Number" type="String" />
+    <apex:attribute name="AccountName" description="Account Name" type="String" />
+    <apex:attribute name="CustomerPO" description="Customer PO" type="String" />
+    <apex:attribute name="EBSOrderNumber" description="EBS Order Number" type="String" />
+    <apex:attribute name="TrackingLink" description="Tracking Link" type="String" />
+    <apex:attribute name="RecipientName" description="Recipient Contact Name" type="String" />
+    <apex:attribute name="PriceDifferenceValue" description="Price Difference Value" type="String" />
+
+    <p>
+        <b>{!$Label.KG_Account_Number_Label}</b> {!AccountNumber}<br/>
+        <b>{!$Label.KG_Account_Label}</b> {!AccountName}<br/>
+        <b>{!$Label.KG_Purchase_Order_Label}</b> {!CustomerPO}<br/>
+        <b>{!$Label.KG_Sales_Order_Label}</b> {!EBSOrderNumber}<br/>
+        <br/>
+        {!SUBSTITUTE($Label.KG_Email_Greeting_Tmpl, '{0}', RecipientName)}
+    </p>
+
+    <p>{!$Label.KG_Price_Mismatch_Notice}</p>
+    <p>{!$Label.KG_No_Action_Required}</p>
+    <p>{!$Label.KG_Pricing_Change_Caveat}</p>
+
+    <ul>
+        <li><b>{!$Label.KG_Price_Diff_Value_Label}</b> {!PriceDifferenceValue}</li>
+    </ul>
+
+    <p>
+        {!$Label.KG_View_Pricing_Details_Link_Intro} &nbsp;
+        <apex:outputLink value="{!TrackingLink}" target="_blank">{!TrackingLink}</apex:outputLink><br/>
+        <i>{!$Label.KG_Link_Copy_Paste_Help}</i>
+    </p>
+
+    <p>
+        {!$Label.KG_Best_Regards}<br/>
+        {!$Label.KG_Customer_Care_Krew}<br/>
+        <apex:outputLink value="https://www.kooziegroup.com" target="_blank">{!$Label.KG_Website_Text}</apex:outputLink><br/>
+        {!$Label.KG_Phone_Text}
+    </p>
+</apex:component>

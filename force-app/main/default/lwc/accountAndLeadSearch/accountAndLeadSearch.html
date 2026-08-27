@@ -1,0 +1,79 @@
+<!--
+  @description       : 
+  @author            : Kumar Saurav
+  @group             : 
+  @last modified on  : 05-08-2024
+  @last modified by  : Kumar Saurav
+  Modifications Log
+  Ver   Date         Author         Modification
+  1.0   08-18-2023   Kumar Saurav   Initial Version
+-->
+<template>
+  <lightning-card title="Duplicate Accounts" icon-name="standard:account">
+    <div class="slds-p-horizontal_small">
+      <template if:true={accountrecord} iterator:item={accountrecord}>
+        <div key={item.value.Id} class="slds-box slds-m-bottom_x-small slds-border_top slds-border_bottom">
+          <div class="slds-grid slds-wrap">
+            <div class="slds-m-around_x-small slds-size_1-of-1"><b># {item.value.sno}</b></div>
+
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element slds-form-element_readonly slds-m-around_xx-small">
+                <span class="slds-form-element__label "><b>Name</b></span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    <a href={item.value.linkName} tabindex="-1">{item.value.Name}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element slds-form-element_readonly slds-m-around_xx-small">
+                <span class="slds-form-element__label"><b>Cust Acc No.</b></span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    {item.value.Customer_Account_Number__c}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element slds-form-element_readonly slds-m-around_xx-small">
+                <span class="slds-form-element__label"><b>Parent Account Name</b></span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    {item.value.parentName}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element slds-form-element_readonly slds-m-around_xx-small">
+                <span class="slds-form-element__label"><b>Status</b></span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    {item.value.status}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slds-size_1-of-1">
+              <div class="slds-form-element slds-form-element_readonly slds-m-around_xx-small">
+                <span class="slds-form-element__label"><b>Billing Address</b></span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    {item.value.addr}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

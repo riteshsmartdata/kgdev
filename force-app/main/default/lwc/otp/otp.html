@@ -1,0 +1,43 @@
+<!--
+  @description       : 
+  @author            : Ritesh Kumar
+  @group             : 
+  @last modified on  : 02-25-2025
+  @last modified by  : Ritesh Kumar
+  Modifications Log
+  Ver   Date         Author         Modification
+  1.0   01-28-2025   Ritesh Kumar   Initial Version
+-->
+<template>
+	<template if:true={contactNotFound}>
+		<c-image heading={chatConfig.Validation_Message__c}
+			image-name="custom:otpImage">
+		</c-image>
+		<div class="slds-text-align_center"> 
+			<lightning-input  name="Enter-OTP" label={chatConfig.Verification_Input_Label__c} value={otpValue} max-length="6"  required="true" onchange={otpChange} disabled ={isInputOtp}></lightning-input>
+			
+			<template if:false={enableResend}>
+				<lightning-button variant="brand" label={chatConfig.Verification_button_Label__c} title="Validate"  class="slds-m-left_x-small slds-button_stretch" onclick={ValidateOTP}>
+				</lightning-button> 	 
+			</template>
+
+			<template if:true={enableResend}>
+				<lightning-button variant="brand" label={chatConfig.Resend_Button_Label__c} title="Re Send OTP"  class="slds-m-left_x-small slds-button_stretch" onclick={reSendOTP}>
+				</lightning-button>
+			</template> 
+
+			<template if:false={isInputOtp}>
+				<div class="slds-text-color_error"><span style='font-size:15px;'>&#9940;</span>&nbsp;{attempts}</div> 
+				<c-timer ontimeup={timeuphandel} timeup={chatConfig.Time_Up__c}></c-timer>
+			</template>
+		</div>
+	</template>
+	<template if:false={contactNotFound}>
+		<c-image heading={chatConfig.Record_Not_Found_Message__c}
+			image-name="custom:noContact">
+		</c-image>
+	</template> 
+		<template if:true={errorMessage}>
+			<div class="slds-text-color_error">Error: {errorMessage}</div>       
+		</template> 
+</template>

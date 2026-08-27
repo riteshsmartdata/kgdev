@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Export Case Related Emails" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+
+            <!-- Spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Record Type ComboBox -->
+            <lightning-combobox
+                name="recordType"
+                label="Select Record Type"
+                value={selectedRecordType}
+                placeholder="Choose Record Type"
+                options={recordTypeOptions}
+                onchange={handleRecordTypeChange}
+                class="slds-m-bottom_medium">
+            </lightning-combobox>
+
+            <!-- Export Button -->
+            <lightning-button 
+                label="Export Emails CSV"
+                variant="brand"
+                onclick={handleExportClick}
+                disabled={isLoading}
+                class="slds-m-top_small">
+            </lightning-button>
+
+        </div>
+    </lightning-card>
+</template>

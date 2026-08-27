@@ -1,0 +1,42 @@
+.slds-p-around_medium {
+	padding: 1rem;
+	display: flex;
+	margin: 20px;
+	gap: 40px;
+	width: 60%;
+}
+
+
+
+lightning-combobox {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+.exportbutton{
+	margin-left: 50px;
+}
+lightning-card {
+	margin: 1rem;
+}
+
+.slds-table {
+    width: 100%;
+    margin-top: 20px;
+    border-spacing: 0;
+}
+
+.slds-table th,
+.slds-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.slds-table th {
+    background-color: #f4f6f9;
+    font-weight: bold;
+}
+
+.slds-table tbody tr:hover {
+    background-color: #f1f1f1;
+}

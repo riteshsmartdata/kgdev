@@ -1,0 +1,194 @@
+<apex:page controller="attachPDFToQuoteRequest" renderAs="pdf">
+    
+    <span align="center">
+    
+   <!-- <apex:image id="theImage" value="https://c.USA554.content.force.com/servlet/servlet.ImageServer?id=0154w0000250EPJ&oid=00D1U000000oeAl" style="width: 600px; height: 150px;"/>    -->
+    <img src="{!URLFOR($Resource.KGLogo)}"  alt="Garyline Logo" style="max-width:10px; height:50px;"/>
+
+   </span>
+    <table>
+        <tr>
+            <td align="left">
+                <b>{!QuoteRequestDetails.Production_Site__c}</b> <br/>
+                <b>Quote #</b> {!QuoteRequestDetails.Quote_Number__c} <br/>
+                <b>Quote Date:</b> <!--{!Now()} <br/> -->
+                <apex:outputText value="{0,date,MM.dd.yyyy}">
+                    <apex:param value="{! NOW() }" />
+                </apex:outputText>
+                <br/>
+                <b>Valid Through:</b> <!--{!QuoteRequestDetails.Valid_Through__c} -->
+                <apex:outputText value="{0,date,MM.dd.yyyy}">
+                    <apex:param value="{!QuoteRequestDetails.Valid_Through__c}" />
+                </apex:outputText>
+                <br/>
+                <b>Opportunity Name:</b> {!QuoteRequestDetails.Opportunity__r.Name}<br/>
+                <apex:outputLink value="https://www.kooziegroup.com" id="kooziegroupLink">www.kooziegroup.com</apex:outputLink><br/>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    
+    <table>
+        
+        <tr>
+            <td>
+                Account Number: 
+            </td>
+            <td >
+                {!QuoteRequestDetails.Account__r.EBS_Num__c}              
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Account Name:
+            </td>
+            <td>
+                {!QuoteRequestDetails.Account__r.Name}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Account Address:
+            </td>
+            <td>
+                {!QuoteRequestDetails.Account__r.ShippingStreet}, {!QuoteRequestDetails.Account__r.ShippingCity}, {!QuoteRequestDetails.Account__r.ShippingState}, {!QuoteRequestDetails.Account__r.ShippingPostalCode}, {!QuoteRequestDetails.Account__r.ShippingCountry}
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                Account Contact:
+            </td>
+            <td>
+                {!QuoteRequestDetails.Contact__r.Name}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Account Contact Email Address:
+            </td>
+            <td>
+                {!QuoteRequestDetails.Contact__r.Email}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Koozie Group Contact:
+            </td>
+            <td>
+              <!--  {!atm.User.Name} -->
+            {!QuoteRequestDetails.Program_Manager__r.name} 
+            </td>
+        </tr>
+        
+    </table>
+    
+    <hr/><br/>
+    
+    <apex:repeat value="{!QuoteRequestDetails.Quote_Products__r}" var="Product" id="theRepeat">
+        
+     <!--   <b>Item #/Name:</b> {!Product.Products__r.Name} <br/> -->
+        <b>Item #/Name:</b> {!Product.Products__r.Product_ID__c} / {!Product.Products__r.Name} <br/>
+        <apex:outputText rendered="{!IF(Product.Description__c != null, true, false)}">
+            <b>Description:</b> {!Product.Description__c} <br/>
+        </apex:outputText>
+        <b>Size:</b> {!Product.Calendar_Size__c} <br/>
+        <b>Size:</b> {!Product.Style_Number_of_Sheets__c} <br/>
+        <b>Binding:</b> {!Product.Binding__c} <br/>
+       <b>Imprint/Artwork:</b> {!Product.Artwork__c} <br/>
+        <b>Grid:</b> {!Product.Grid__c} <br/>
+        <b>Paper/Print:</b> {!Product.Printing__c} <br/> 
+        <b>Proofs:</b><br/>
+        One hard copy or PDF included (approx. 8 working days)<br/>
+        Revised Proof- charges apply (add 4 working days)<br/>
+        <apex:outputText rendered="{!IF(Product.Production_Lead_Time__c != null, true, false)}">
+            <b>Production Lead Time:</b> Approximately {!Product.Production_Lead_Time__c } business days after proof approval.<br/>
+        </apex:outputText>
+        
+        <b>Lead times may be extended due to production capacity after September 1st due to seasonality.</b><br/><br/>
+        
+        <table>
+            <tr>
+              <!--  <td>
+                    <b>Quantity:</b><hr/> 
+                     {!Product.Quantity__c}<br/>
+                    <apex:outputText rendered="{!IF(Product.Additional_Quantities__c != null, true, false)}">
+                        {!Product.Additional_Quantities__c}<br/></apex:outputText>
+                    <apex:outputText rendered="{!IF(Product.Additional_Quantities_2__c != null, true, false)}">
+                        {!Product.Additional_Quantities_2__c}<br/></apex:outputText>
+                    <apex:outputText rendered="{!IF(Product.Additional_Quantities_3__c != null, true, false)}">
+                        {!Product.Additional_Quantities_3__c }<br/></apex:outputText>
+                </td> -->
+                <td>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        
+        <table>
+            <tr>
+                <td> <b>Estimated Net Price in {!QuoteRequestDetails.Account__r.Currency__c}, Ships From: {!Product.Ships_From__c}</b><hr/>
+                    {!Product.Price__c} net per piece
+                </td> 
+            </tr>
+            <tr>
+              <td>
+                    <apex:outputText rendered="{!IF(Product.Additional_Qty_1_Price__c != null, true, false)}">
+                        {!Product.Additional_Qty_1_Price__c} net per piece<br/></apex:outputText>
+                    <apex:outputText rendered="{!IF(Product.Additional_Qty_2_Price__c != null, true, false)}">
+                        {!Product.Additional_Qty_2_Price__c} net per piece<br/></apex:outputText>
+                    <apex:outputText rendered="{!IF(Product.Additional_Qty_3_Price__c != null, true, false)}">
+                        {!Product.Additional_Qty_3_Price__c } net per piece<br/></apex:outputText>
+                </td>
+            </tr>
+        </table>
+        <br/>
+                <apex:outputText rendered="{!IF(Product.Misc_Comments__c != null, true, false)}">
+
+        <div style="word-wrap:break-word; width:400px;" >
+            <b>Misc Comments:</b><br/> 
+            <apex:outputText >{!Product.Misc_Comments__c}</apex:outputText>
+        </div>
+        </apex:outputText>
+        <br/><br/>
+    </apex:repeat>
+    <br/>
+    <br/>
+    
+    <span style="color:red"><b>Inventory and Production Time is estimated and can vary pending production capacity at time the order is submitted.<hr/></b></span><br/>
+    
+    Note: If any changes are requested a re-quote will be needed <br/><br/><hr/>
+    
+    <p align="center">Thank you again for your quote opportunity. Should you have any questions, please call us directly.<br/>
+        To place your order, send your purchase order to: <br/>
+      <!--  <b>{!atm.User.Name}</b><br/> -->
+        <b>{!QuoteRequestDetails.Program_Manager__r.name} </b> <br/>
+        <b>{!QuoteRequestDetails.Program_Manager__r.Email} </b>
+         <b>{!QuoteRequestDetails.Program_Manager__r.Phone} </b>
+       <!-- <b>{!atm.User.Email}</b> -->
+    </p>
+    <p align="center" style="color:red"><b>Quote must be attached when submitting your Purchase order to avoid processing delays.</b></p>
+    <hr/>
+    
+     <div style="margin-top:5px;font-size:8pt;">1. Prices shown in <b>{!QuoteRequestDetails.Account__r.Currency__c}</b>, please note taxes may apply.</div>
+     <div style="margin-top:5px;font-size:8pt;">2. The pricing for all overseas USB requests is only valid until the Monday after the quote was sent and/or the quote date that is 
+        listed on the quote form.</div>
+     <div style="margin-top:5px;font-size:8pt;">3. Customer is responsible for obtaining all rights to images, trademarks, logos, and artwork provided.  All liabilities of this nature rest with Customer.</div>
+     <div style="margin-top:5px;font-size:8pt;">4. Quote is based on entire quantity being printed and shipped at one time. </div> 
+     <div style="margin-top:5px;font-size:8pt;">5. Shipping and handling (including palletization) charges are not included. </div>
+     <div style="margin-top:5px;font-size:8pt;">6. When shipping Direct to an end-location other than those belonging to Koozie Group, the end-location must be able to accept a full container delivery and be unloaded within 2 hours of receiving the container, or additional freight charges may be applied to the final invoice. </div>
+     <div style="margin-top:5px;font-size:8pt;">7. Koozie Group terms and conditions apply. </div>
+     <div style="margin-top:5px;font-size:8pt;">8. Due to the volatility of transportation and raw material costs, Koozie Group reserves the right to change prices at any time 
+        without notice, if necessary. </div>
+     <div style="margin-top:5px;font-size:8pt;">9. This quote does not guarantee inventory will be available upon receipt and approval of your purchase order. </div>
+     <div style="margin-top:5px;font-size:8pt;">10. If Proof Charges are not indicated above, then they are not included. </div>
+     <div style="margin-top:5px;font-size:8pt;">11. All charges and fees up until Cancelation will be billed to the customer.  </div>
+     <div style="margin-top:5px;font-size:8pt;">12. Testing not included. </div>
+    <p align="right">
+        Quoted By: {!QuoteRequestDetails.Assigned_To__r.Name}
+    </p>
+    <br/>
+    <hr/>
+    
+    
+</apex:page>

@@ -1,0 +1,41 @@
+<template>
+    <template if:true={target}>
+        <article class="slds-card slds-p-around_medium">
+
+            <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-bottom_small">
+                <header class="slds-media slds-media_center">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <span class="slds-text-heading_small">Account Plan Progress</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+
+            <div class="slds-card__body slds-p-around_small">
+
+                <div class="slds-grid slds-wrap slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-text-title">Current Value</div>
+                        <div class="slds-text-heading_medium">
+                            ${ytdRevenue}
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                        <div class="slds-text-title">Target Value</div>
+                        <div class="slds-text-heading_medium ">
+                            ${target}
+                        </div>
+                    </div>
+                </div>
+
+                <lightning-progress-bar 
+                    value={percent} 
+                    size="large">
+                </lightning-progress-bar>
+
+            </div>
+        </article>
+    </template>
+</template>

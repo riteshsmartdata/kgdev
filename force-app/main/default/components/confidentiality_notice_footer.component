@@ -1,0 +1,10 @@
+<apex:component access="global" >
+    <div style="margin-top: 20px; border-top: 2px solid #cccccc; font-family: 'Source Sans Pro', sans-serif;">
+        <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: bold; color: #333333;">
+            CONFIDENTIALITY NOTICE
+        </h3>
+        <p style="margin: 0; font-size: 11px; line-height: 1.6; color: #666666;">
+            {!$Label.KG_Confidentiality_Notice_Body}
+        </p>
+    </div>
+</apex:component>

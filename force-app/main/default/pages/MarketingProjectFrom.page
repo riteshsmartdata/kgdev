@@ -1,0 +1,10 @@
+<!-- MarketingProjects.page -->
+<apex:page standardStylesheets="true" showHeader="false">
+    <apex:includeLightning />    
+    <div id="lwcContainer"></div>
+    <script>
+    $Lightning.use("c:visualforceAuraApplications", function() {
+        $Lightning.createComponent("c:MarketingProjectFrom", {}, "lwcContainer");
+    });
+    </script>   
+</apex:page>

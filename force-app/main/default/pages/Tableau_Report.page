@@ -1,0 +1,4 @@
+<apex:page standardController="Account" showheader="false" sidebar="false">
+  <apex:iframe src="https://tableau.kooziegroup.com/views/AccountStatusDashboard/Dashboard1">
+  </apex:iframe>
+</apex:page>

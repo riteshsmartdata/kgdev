@@ -1,0 +1,168 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <lightning-combobox label="Select Object" value={selectedObject} options={objectOptions}
+                onchange={handleObjectChange}>
+            </lightning-combobox>
+
+            <lightning-combobox label="Select Record Type" value={selectedRecordType} options={recordTypeOptions}
+                onchange={handleRecordTypeChange} disabled={isRecordTypeDisabled}>
+            </lightning-combobox>
+            <lightning-combobox label="Select Year" value={selectedYear} options={yearOptions}
+                onchange={handleYearChange}>
+            </lightning-combobox>
+
+        </div>
+
+        <div class="exportbutton">
+            <lightning-button variant="brand" label="Fetch" onclick={handleExport}></lightning-button>
+
+            <!-- <table>
+                <tr>
+                    <th>Email</th>
+                </tr>
+                <template for:each={fetchedData} for:item="obj">
+                    <tr key={obj.Id}>
+                        <td>{obj.Email}</td>
+                    </tr>
+                </template>
+            </table> -->
+        </div>
+        <template if:true={isLoading}>
+            <lightning-spinner size="medium" alternative-text="Loading"></lightning-spinner>
+        </template>
+        <template if:true={noEmailsFound}>
+            <div class="slds-text-align_center slds-text-color_error slds-m-top_medium">
+                <p>No Duplicate emails found</p>
+            </div>
+        </template>
+
+        <template if:true={fetchedData.length}>
+            <div class="slds-scrollable_x">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate">Email</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Id</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">First Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Last Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Domain</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">RecordTypeID</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Web Id</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Contact Status</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">verified</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">LastModifiedDate</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">CreatedDate</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">AccountId</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate">Account Name</div>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={fetchedData} for:item="obj">
+
+                            <tr key={obj.Id}>
+                                <!-- <template if:true={isContact}> -->
+                                <td>
+                                    <div class="slds-truncate">{obj.Email}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Id}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.FirstName}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.LastName}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Contact_Domain__c}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.RecordTypeId}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Web_Id__c}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Contact_Status__c}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Verified__c}</div>
+                                </td>
+
+                                <td>
+                                    <div class="slds-truncate">{obj.LastModifiedDate}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.CreatedDate}</div>
+                                </td>
+
+                                <td>
+                                    <div class="slds-truncate">{obj.AccountId}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{obj.Account.Name}</div>
+                                </td>
+
+                                <!-- </template> -->
+                                <!-- <template if:true={isAccount}>
+
+                                    <td>
+                                        <div class="slds-truncate">{obj.Primary_Team_Member_Email__c }</div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate">{obj.Id}</div>
+                                    </td>
+
+                                </template> -->
+                            </tr>
+
+
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+            <div class="slds-text-align_center slds-m-top_medium">
+                <lightning-button variant="neutral" label="Previous" onclick={handlePrevious}
+                    disabled={isPreviousDisabled}></lightning-button>
+                <lightning-button variant="neutral" label="Next" onclick={handleNext} disabled={isNextDisabled}>
+                </lightning-button>
+
+
+            </div>
+            <div class="slds-text-align_center slds-m-top_medium">
+                <lightning-button variant="brand" label="Export" onclick={handleExportToExcel}></lightning-button>
+                <lightning-spinner if:true={isExporting} alternative-text="Exporting..." size="large">
+                </lightning-spinner>
+
+            </div>
+        </template>
+    </lightning-card>
+</template>

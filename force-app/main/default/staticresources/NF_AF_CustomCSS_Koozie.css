@@ -1,0 +1,15 @@
+/* Bot window custom styles */
+/* Changes the width of user and bot message bubbles to allow longer responses to take less lines */
+.embedded-messaging-chat-message {
+    max-width:100% !important;
+    width: 100%;
+    }
+    .slds-chat-message__body{
+    width:100%
+    }
+    .embedded-messaging-outbound-chat-message{
+    max-width:85%
+    }
+    .embedded-messaging-inbound-chat-message{
+    max-width:95%
+    }

@@ -1,0 +1,101 @@
+<apex:component access="global">
+    <!-- Attributes allow the email template to pass in merge context records -->
+    <apex:attribute name="caseRecord" type="Case" description="The Case context record" required="false"/>
+    <apex:attribute name="orderRecord" type="EBS_Order__c" description="The related EBS Order record" required="false"/>
+    <apex:attribute name="line" type="EBS_Order_Line__c" description="The related EBS Order Line record" required="false"/>
+    <apex:attribute name="RecipientName" type="String" description="First Name and Last Name" required="false"/>
+
+    <style type="text/css">
+        .kg-body { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #111; line-height: 1.5; }
+        .kg-header { margin-bottom: 12px; }
+        .kg-label { font-weight: 600; }
+        .kg-section { margin: 12px 0; }
+        .kg-signoff { margin-top: 16px; }
+        .kg-muted { color: #555; }
+        .kg-block { display: block; margin: 4px 0; }
+    </style>
+
+    <div class="kg-body">
+        <!-- Header key details (Account/PO/SO) -->
+        <div class="kg-header">
+            <span class="kg-label">{!$Label.KG_Delayed_Order_Label_Account_Number}</span>
+            <span class="kg-muted">{!IF(NOT(ISBLANK(orderRecord.Customer_Account_Number__c)), orderRecord.Customer_Account_Number__c, "")}</span><br/>
+            <span class="kg-label">{!$Label.KG_Delayed_Order_Label_Account_Name}</span>
+            <span class="kg-muted">{!IF(NOT(ISBLANK(orderRecord.Account_Name__r.Name)), orderRecord.Account_Name__r.Name, "")}</span><br/>
+            <span class="kg-label">{!$Label.KG_Delayed_Order_Label_Purchase_Order}</span>
+            <span class="kg-muted">{!IF(NOT(ISBLANK(orderRecord.Customer_PO__c)), orderRecord.Customer_PO__c, "")}</span><br/>
+            <span class="kg-label">{!$Label.KG_Delayed_Order_Label_Sales_Order}</span>
+            <span class="kg-muted">{!IF(NOT(ISBLANK(orderRecord.EBS_Order_Number__c)), orderRecord.EBS_Order_Number__c, "")}</span>
+        </div>
+
+        <!-- Greeting -->
+        <div class="kg-section">
+            {!$Label.KG_Delayed_Order_Greeting_Hi} {!RecipientName}{!$Label.KG_Delayed_Order_Punctuation_Comma}
+        </div>
+
+        <!-- Apology and product line -->
+        <div class="kg-section">
+            {!$Label.KG_Delayed_Order_Apology_Line_Part1} {!IF(NOT(ISBLANK(caseRecord.Delayed_Order_Reason__c)), caseRecord.Delayed_Order_Reason__c, "there has been a delay")}{!$Label.KG_Delayed_Order_Apology_Line_Part2}<br/>
+        </div>
+        <!-- Table to Show order line info -->
+        <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductName}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductNumber}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ProductColor}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_Quantity}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ScheduledShipDate}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_ShipMethod}</th>
+                <th>{!$Label.KG_INVHOLD_TableHdr_EstimatedArrivalDate}</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td >{!line.External_Product_Name__c}</td>
+                    <td>{!line.Product_Number__c}</td>
+                    <td>{!line.Product_Color__c}</td>
+                    <td>{!line.Quantity__c}</td>
+                    <td class="auto-width" >
+                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                            <apex:param value="{!line.Scheduled_Ship_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>{!line.Ship_Method__c}</td>
+                    <td class="auto-width" >
+                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                            <apex:param value="{!line.Estimated_Arrival_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+        <div class="kg-section">
+            {!$Label.KG_Delayed_Order_Working_ASAP_Line_Part1}
+        </div>
+        <!-- Guidance -->
+        <div class="kg-section">
+            <b>{!$Label.KG_Delayed_Order_Firm_Hand}</b>{!$Label.KG_Delayed_Order_If_Concern_Line}
+        </div>
+
+        <!-- Tracker -->
+        <div class="kg-section">
+            {!$Label.KG_Delayed_Order_Tracker_Intro_Line}<br/>
+            <apex:outputLink value="{!orderRecord.Tracking_Link__c}" target="_blank">{!orderRecord.Tracking_Link__c}</apex:outputLink><br/>
+            <i>{!$Label.KG_Delayed_Order_Tracker_CopyPaste_Line}</i>
+        </div>
+
+        <!-- Closing -->
+        <div class="kg-section">
+            {!$Label.KG_Delayed_Order_Apology_Closing_Line}
+        </div>
+
+        <!-- Signature -->
+        <div class="kg-signoff">
+            {!$Label.KG_Delayed_Order_Signoff_Best_Regards}<br/>
+            {!$Label.KG_Delayed_Order_Signoff_Team_Name}<br/>
+            <apex:outputLink value="https://www.kooziegroup.com" target="_blank">{!$Label.KG_Delayed_Order_Signoff_Website}</apex:outputLink><br/>
+            {!$Label.KG_Delayed_Order_Signoff_Phone}
+        </div>
+    </div>
+</apex:component>

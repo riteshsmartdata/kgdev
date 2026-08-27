@@ -1,0 +1,12 @@
+<apex:page standardController="Account">
+    <style>
+    .output-text {
+      font-size: 20px;
+      color: red;
+      text-align: center;
+        display: block;
+        
+    }
+    </style>
+  <apex:outputText value="{!Account.Customer_Note__c}"  styleClass="output-text"/>
+</apex:page>
